@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joy Feast - Share Food, Spread Joy</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- External CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Notification -->
+  <div id="notification" class="notification"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav class="navbar">
+        <a href="#" class="logo">
+          <i class="fas fa-utensils"></i>
+          Joy Feast
+        </a>
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="auth-buttons">
+          <div id="notificationBell" class="notification-bell hidden">
+            <i class="fas fa-bell"></i>
+            <span id="notificationCount" class="notification-count">0</span>
+            <div id="notificationPanel" class="notification-panel">
+              <div class="notification-header">
+                <h4>Notifications</h4>
+                <button id="markAllRead">Mark all as read</button>
+              </div>
+              <div id="notificationList" class="notification-list"></div>
+            </div>
+          </div>
+          <button id="loginBtn" class="btn btn-secondary">Login</button>
+          <button id="signupBtn" class="btn btn-primary">Sign Up</button>
+          <button id="logoutBtn" class="btn btn-outline hidden">Logout</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container">
+      <h1>Share Food, Spread Joy</h1>
+      <p>Join our community to reduce food waste and help those in need. Donate your surplus food or request donations for your organization.</p>
+      <button id="heroSignupBtn" class="btn btn-primary">Get Started</button>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="container">
+      <h2>Our Impact</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <i class="fas fa-utensils"></i>
+          <h3 id="totalMealsSaved">0</h3>
+          <p>Meals Saved from Waste</p>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-users"></i>
+          <h3 id="totalDonors">0</h3>
+          <p>Active Donors</p>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-hand-holding-heart"></i>
+          <h3 id="totalReceivers">0</h3>
+          <p>Organizations Helped</p>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-leaf"></i>
+          <h3 id="co2Reduced">0</h3>
+          <p>KG of CO2 Reduced</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Top Donors Section -->
+  <section class="top-donors-section">
+    <div class="container">
+      <h2>Our Top Donors</h2>
+      <div id="topDonorsGrid" class="donors-grid"></div>
+    </div>
+  </section>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Login to Joy Feast</h2>
+        <button class="close-modal">&times;</button>
+      </div>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+        <div class="form-footer">
+          <p>Don't have an account? <a href="#" id="showSignup">Sign up</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Signup Modal -->
+  <div id="signupModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Create an Account</h2>
+        <button class="close-modal">&times;</button>
+      </div>
+      <form id="signupForm">
+        <div class="form-group">
+          <label for="signupUsername">Username</label>
+          <input type="text" id="signupUsername" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="signupEmail">Email</label>
+          <input type="email" id="signupEmail" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="signupPhone">Phone Number</label>
+          <input type="tel" id="signupPhone" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="signupPassword">Password</label>
+          <input type="password" id="signupPassword" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Sign Up</button>
+        <div class="form-footer">
+          <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Role Selection Modal -->
+  <div id="roleModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><h2>Select Your Role</h2></div>
+      <p>Please choose how you'd like to use Joy Feast:</p>
+      <div class="role-selection">
+        <div class="role-option" data-role="donor">
+          <i class="fas fa-hand-holding-heart"></i>
+          <h3>Food Donor</h3>
+          <p>Individuals or restaurants who want to share food</p>
+        </div>
+        <div class="role-option" data-role="receiver">
+          <i class="fas fa-hands-helping"></i>
+          <h3>Food Receiver</h3>
+          <p>NGOs, shelters, etc. who request food</p>
+        </div>
+      </div>
+      <button id="confirmRole" class="btn btn-primary" style="width: 100%; margin-top: 20px;" disabled>Confirm Role</button>
+    </div>
+  </div>
+
+  <!-- Dashboard Section -->
+  <section id="dashboard" class="dashboard hidden">
+    <div class="container">
+      <div id="donorDashboard" class="hidden"></div>
+      <div id="receiverDashboard" class="hidden"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>About Joy Feast</h3>
+          <p>Joy Feast is a platform connecting food donors with organizations that serve people in need, reducing food waste and fighting hunger.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <a href="#home">Home</a>
+          <a href="#about">About Us</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-section">
+          <h3>Contact Us</h3>
+          <p><i class="fas fa-map-marker-alt"></i> 123 Food Street, City, Country</p>
+          <p><i class="fas fa-phone"></i> +1 234 567 8900</p>
+          <p><i class="fas fa-envelope"></i> info@joyfeast.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 Joy Feast. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- External JS -->
+  <script src="js/script.js"></script>
+</body>
+</html>
